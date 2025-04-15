@@ -1,8 +1,3 @@
-'use client';
-
-import { useState, useEffect } from 'react';
-import { supabase } from '@/lib/supabase';
-import { useRouter } from 'next/navigation';
 import { Product } from '@/types/database';
 
 // بيانات المنتج الوهمية للتعديل
@@ -18,14 +13,22 @@ const dummyProduct: Product = {
   featured: true
 };
 
-type EditProductPageProps = {
-  params: {
-    id: string;
-  };
-  searchParams?: Record<string, string | string[] | undefined>;
-};
+// مكون الصفحة الرئيسي (مكون خادم)
+export default async function EditProductPage({ params }) {
+  // جلب بيانات المنتج
+  const product = dummyProduct;
+  
+  return <EditProductClient product={product} id={params.id} />;
+}
 
-export default function EditProductForm({ params, searchParams }: EditProductPageProps) {
+// المكون العميل لتعديل المنتج
+'use client';
+
+import { useState, useEffect } from 'react';
+import { supabase } from '@/lib/supabase';
+import { useRouter } from 'next/navigation';
+
+function EditProductClient({ product, id }) {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');

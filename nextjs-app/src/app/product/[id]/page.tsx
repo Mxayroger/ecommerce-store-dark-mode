@@ -1,10 +1,4 @@
-'use client';
-
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
 import { Product } from '@/types/database';
-import WhatsAppButton from '@/components/whatsapp-button';
 
 // بيانات المنتج الوهمية للعرض
 const dummyProduct: Product = {
@@ -19,23 +13,29 @@ const dummyProduct: Product = {
   featured: true
 };
 
-type ProductPageProps = {
-  params: {
-    id: string;
-  };
-  searchParams?: Record<string, string | string[] | undefined>;
-};
+// مكون الصفحة الرئيسي (مكون خادم)
+export default async function ProductPage({ params }) {
+  // جلب بيانات المنتج
+  const product = dummyProduct;
+  
+  return <ProductClient product={product} id={params.id} />;
+}
 
-export default function ProductPage({ params, searchParams }: ProductPageProps) {
-  const [product, setProduct] = useState<Product | null>(null);
+// المكون العميل للمنتج
+'use client';
+
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import WhatsAppButton from '@/components/whatsapp-button';
+
+function ProductClient({ product, id }) {
   const [quantity, setQuantity] = useState(1);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-    // في المستقبل، سيتم استبدال هذا بجلب البيانات من Supabase
-    setProduct(dummyProduct);
-  }, [params.id]);
+  }, []);
 
   if (!mounted || !product) {
     return (

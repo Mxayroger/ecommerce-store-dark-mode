@@ -1,8 +1,13 @@
 // Simple ESLint configuration for Next.js
+import nextPlugin from '@next/eslint-plugin-next';
+
 export default [
   {
-    extends: [
-      "next/core-web-vitals"
-    ],
-  },
+    plugins: {
+      next: nextPlugin
+    },
+    rules: {
+      ...nextPlugin.configs['core-web-vitals'].rules
+    }
+  }
 ];
