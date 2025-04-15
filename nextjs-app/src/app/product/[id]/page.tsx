@@ -19,7 +19,14 @@ const dummyProduct: Product = {
   featured: true
 };
 
-export default function ProductPage({ params }: { params: { id: string } }) {
+type ProductPageProps = {
+  params: {
+    id: string;
+  };
+  searchParams?: Record<string, string | string[] | undefined>;
+};
+
+export default function ProductPage({ params, searchParams }: ProductPageProps) {
   const [product, setProduct] = useState<Product | null>(null);
   const [quantity, setQuantity] = useState(1);
   const [mounted, setMounted] = useState(false);

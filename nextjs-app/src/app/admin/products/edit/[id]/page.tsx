@@ -18,7 +18,14 @@ const dummyProduct: Product = {
   featured: true
 };
 
-export default function EditProductForm({ params }: { params: { id: string } }) {
+type EditProductPageProps = {
+  params: {
+    id: string;
+  };
+  searchParams?: Record<string, string | string[] | undefined>;
+};
+
+export default function EditProductForm({ params, searchParams }: EditProductPageProps) {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
