@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { Product } from '@/types/database';
-import WhatsAppButton from '@/app/components/whatsapp-button';
+import WhatsAppButton from '@/components/whatsapp-button';
 
 interface ProductCardProps {
   product: Product;

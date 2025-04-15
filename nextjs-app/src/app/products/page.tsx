@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import ProductCard from '@/app/components/product-card';
+import ProductCard from '@/components/product-card';
 import { Product } from '@/types/database';
 
 // بيانات المنتجات الوهمية للعرض
